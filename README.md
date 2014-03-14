@@ -48,16 +48,16 @@ The Walgreens codes are as follows:
   Prefix:   01101010101101100000
   Suffix:   0
   
-   | 1 OFF:    0111
-   | 1 ON:     1111
+   | 1 OFF:    0111 |
+   | 1 ON:     1111 |
   
-   | 2 OFF:    0011
-   | 2 ON:     1011
+   | 2 OFF:    0011 |
+   | 2 ON:     1011 |
   
-   | 3 OFF:    0101
-   | 3 ON:     1101
+   | 3 OFF:    0101 |
+   | 3 ON:     1101 |
   
-   | All OFF:  0100
-   | All ON:   1000
+   | All OFF:  0100 |
+   | All ON:   1000 |
   
 The library doesn't use the All OFF and All ON codes. Instead, it loops through the lamps. 
