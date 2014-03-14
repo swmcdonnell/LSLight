@@ -15,51 +15,36 @@ Once you assign a code of 1, 2 or 3 to each device, you can turn the lights on o
 and this library. The library tracks whether it thinks a lamp is on or off. It provides functions to turn
 on or off according to that status, or to force on or off regardless of that status.
 
+Functions
+----
 
-LSLight(void):      I don't require any parameters when you create an instance of a class becauase if you're
-                    declaring a static global variable, you might not know the parameters to pass, for example
-                    if you're reading information from EEPROM. So you can create the class and then use the
-                    init function below to set it up.
+Function               |  Example                          | Description                                              |
+--------               |  -----------                      | -----------                                              |
+**LSLight(void)**      | `static LSLight light=LSLight();` | Since you might not know the parameters when you create a                                                               static global variable for the class, I don't use any                                                                   parameters when you create the class. Call the "init"                                                                   function below after you create it to initialize it     |
+**init(pin,status)**  | `light.init(10, OFF);`            | initialize - pass the RF transmitter pin and whether you                                                                want to start with all lights ON or OFF.                |
+**on(lamp)**          |  `light.on(1);`                    | Turn ON a lamp if current status shows it OFF                                                                           _returns the current lamp status of the lamp_           |
+**off(lamp)**         |  `light.off(3);`                   | Turn OFF a lamp if current status show it ON                                                                            _returns the current lamp status of the lamp_           | 
+**forceOn(lamp)**     |  `light.forceOn(2);`               | Turn ON a lamp (unconditionally)                                                                                        _returns the current lamp status of the lamp_           |
+**forceOff(lamp)**    |  `light.forceOff(1);`              | Turn OFF a lamp (unconditionally)                                                                                        _returns the current lamp status of the lamp_          |  
+**all(status)**       |  `light.all(ON);`                  | Turn all lamps ON or OFF (unconditionally)              |
+**status(lamp)**      |  `light.status(2);`               | Returns current status of a lamp, ON or OFF             |
 
-init(pin, status):  call the init function with the RF transmitter pin and whether you want to start with
-                    lights on or off. 
-                    
-on(lamp):           call "on" to turn a lamp on, for example:  on(1); on(2); on(3);
-                    returns the current status of the lamp
-
-off(lamp):          call "off" to turn off a lamp, for example:  off(1); off(2); off(3);
-                    returns the current status of the lamp (ON or OFF)
-
-forceOn(lamp):      turn the lamp on even if the library believes it's already on, for example:
-                    forceOn(1); forceOn(2); forceOn(3);
-                    returns the current status of the lamp
-                    
-forceOff(lamp):     turn thelamp off even if the library believes it's already off, for example:
-                    forceOff(1); forceOff(2); forceOff(3);
-                    returns the current status of the lamp
-                    
-all(status):        turn all lamps on or off, for example: all(ON); all(OFF);
-                    this function uses forceOn and forceOff
-                    
-status(lamp):       get the current status of a lamp, ON or OFF, for example:  status(1); status(2); status(3);
+Codes
+------
   
 The Walgreens codes are as follows:
 
-   * Prefix:   01101010101101100000
-   * Suffix:   0
+  Prefix               | Suffix |
+  ----                 | ---- |
+  01101010101101100000 |  0
   
-   * 1 OFF:    0111 
-   * 1 ON:     1111 
-  
-   * 2 OFF:    0011 
-   * 2 ON:     1011 
-  
-   * 3 OFF:    0101 
-   * 3 ON:     1101 
-  
-   * All OFF:  0100 
-   * All ON:   1000 
-     
+  Lamp   |    OFF   |  ON     |
+  :----: |  :----:  | :----:  |
+   1     |    0111  | 1111    |
+   2     |    0011  | 1011    |
+   3     |    0101  | 1101    |
+  All    |    0100  | 1000    |
+
    * For example, to turn ON Lamp 1, the code is:  "0110101010110110000011110"
   
    The library doesn't use the All OFF and All ON codes. Instead, it loops through the lamps. 
