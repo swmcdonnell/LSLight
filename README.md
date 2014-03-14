@@ -22,11 +22,7 @@ LSLight(void):      I don't require any parameters when you create an instance o
                     init function below to set it up.
 
 init(pin, status):  call the init function with the RF transmitter pin and whether you want to start with
-                    lights on or off. With some libraries, you pass the pin and other setup information when
-                    you create your variable, but that makes it more difficult to read your setup data from the
-                    Arduino (for example, from EEPROM) and then create the instance of the class, so I don't 
-                    require any parameters when you invoke a class, and provide an init function instead that
-                    you call to initialize the function
+                    lights on or off. 
                     
 on(lamp):           call "on" to turn a lamp on, for example:  on(1); on(2); on(3);
                     returns the current status of the lamp
@@ -52,16 +48,16 @@ The Walgreens codes are as follows:
   Prefix:   01101010101101100000
   Suffix:   0
   
-  1 OFF:    0111
-  1 ON:     1111
+   | 1 OFF:    0111
+   | 1 ON:     1111
   
-  2 OFF:    0011
-  2 ON:     1011
+   | 2 OFF:    0011
+   | 2 ON:     1011
   
-  3 OFF:    0101
-  3 ON:     1101
+   | 3 OFF:    0101
+   | 3 ON:     1101
   
-  All OFF:  0100
-  All ON:   1000
+   | All OFF:  0100
+   | All ON:   1000
   
 The library doesn't use the All OFF and All ON codes. Instead, it loops through the lamps. 
