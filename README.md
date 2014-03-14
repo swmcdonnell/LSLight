@@ -48,7 +48,8 @@ The Walgreens codes are as follows:
   Prefix:   01101010101101100000
   Suffix:   0
   
-   \ 1 OFF:    0111 \
+  \
+     1 OFF:    0111 \
      1 ON:     1111 \
   
      2 OFF:    0011 \
