@@ -90,6 +90,7 @@ void LSLight::init(int pin, int startupMode) {
  *
 ********************************************/
 int LSLight::forceOn(unsigned int lamp) {
+	if (lamp < 1 || lamp > MAX_OUTLETS) return OFF;
 	--lamp;
 	sprintf(fullCmd, "%20s%4s%1s", prefix, command[lamp][ON], suffix);
 	remote.send(fullCmd);
@@ -111,6 +112,7 @@ int LSLight::forceOn(unsigned int lamp) {
  *		ON or OFF
 ********************************************/
 int LSLight::on(unsigned int lamp) {
+	if (lamp < 1 || lamp > MAX_OUTLETS) return OFF;
 	if (_status[lamp-1] == OFF) {
 		forceOn(lamp);
 	}
@@ -126,6 +128,7 @@ int LSLight::on(unsigned int lamp) {
 ********************************************/
 
 int LSLight::off(unsigned int lamp) {
+	if (lamp < 1 || lamp > MAX_OUTLETS) return OFF;
 	if (_status[lamp-1] == ON) {
 		forceOff(lamp);
 	}
@@ -140,6 +143,7 @@ int LSLight::off(unsigned int lamp) {
  *
 ********************************************/
 int LSLight::forceOff(unsigned int lamp) {
+	if (lamp < 1 || lamp > MAX_OUTLETS) return OFF;
 	--lamp;
 	sprintf(fullCmd, "%20s%4s%1s", prefix, command[lamp][OFF], suffix);
 	remote.send(fullCmd);
@@ -179,6 +183,7 @@ void LSLight::all(int turnThem) {
 ********************************************/
 
 int LSLight::status(unsigned int lamp) {
+	if (lamp < 1 || lamp > MAX_OUTLETS) return OFF;
 	return _status[lamp-1];
 }
 
